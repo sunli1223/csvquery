@@ -2,12 +2,13 @@ package command
 
 import (
 	"fmt"
+	"github.com/erizocosmico/csvquery"
+	sqle "gopkg.in/src-d/go-mysql-server.v0"
+	"os"
+	"path"
 	"path/filepath"
 	"strings"
 	"unicode"
-
-	"github.com/erizocosmico/csvquery"
-	sqle "gopkg.in/src-d/go-mysql-server.v0"
 )
 
 type baseCmd struct {
@@ -17,11 +18,26 @@ type baseCmd struct {
 
 func (b baseCmd) engine() (*sqle.Engine, *csvquery.Database, error) {
 	db := csvquery.NewDatabase(b.Name)
-
 	for _, f := range b.Files {
-		name, path := splitFile(f)
-		if err := db.AddTable(name, path); err != nil {
-			return nil, nil, err
+		if IsDir(f) {
+			fileList, err := ListCSVFilesDir(f)
+			if err != nil {
+				panic(err)
+			}
+			addDir(f)
+			for _, file := range fileList {
+				name, path := splitFile(file)
+				if err := db.AddTable(name, path); err != nil {
+					return nil, nil, err
+				}
+				addCsvFile(path, name)
+			}
+		} else {
+			name, path := splitFile(f)
+			if err := db.AddTable(name, path); err != nil {
+				return nil, nil, err
+			}
+			addCsvFile(path, name)
 		}
 	}
 
@@ -34,9 +50,26 @@ func (b baseCmd) engine() (*sqle.Engine, *csvquery.Database, error) {
 
 	return engine, db, nil
 }
-
+func IsDir(path string) bool {
+	s, err := os.Stat(path)
+	if err != nil {
+		return false
+	}
+	return s.IsDir()
+}
+func ListCSVFilesDir(directory string) ([]string, error) {
+	var files []string
+	err := filepath.Walk(directory, func(fullPath string, info os.FileInfo, err error) error {
+		if strings.ToLower(path.Ext(fullPath)) == ".csv" {
+			files = append(files, fullPath)
+		}
+		return nil
+	})
+	return files, err
+}
 func splitFile(s string) (name, path string) {
-	if idx := strings.LastIndex(s, ":"); idx >= 0 {
+	suffixIdx := strings.LastIndex(s, ".")
+	if idx := strings.LastIndex(s, ":"); idx > suffixIdx {
 		path = s[:idx]
 		name = s[idx+1:]
 	} else {

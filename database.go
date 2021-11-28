@@ -47,3 +47,7 @@ func (d *Database) AddTable(name, path string) error {
 
 	return nil
 }
+func (d *Database) DropTable(name string) error {
+	delete(d.tables, "name")
+	return nil
+}

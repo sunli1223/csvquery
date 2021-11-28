@@ -16,6 +16,7 @@ var (
 )
 
 func main() {
+	logrus.SetLevel(logrus.DebugLevel)
 	parser := flags.NewNamedParser("csvquery", flags.Default)
 
 	_, err := parser.AddCommand(

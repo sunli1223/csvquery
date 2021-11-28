@@ -7,6 +7,7 @@ require (
 	github.com/erizocosmico/csvquery v1.2.0
 	github.com/jessevdk/go-flags v1.4.0
 	github.com/olekukonko/tablewriter v0.0.0-20180506121414-d4647c9c7a84
+	github.com/robfig/cron/v3 v3.0.1
 	github.com/sirupsen/logrus v1.1.0
 	github.com/stretchr/testify v1.2.2
 	gopkg.in/src-d/go-mysql-server.v0 v0.0.0-20181012075230-8c2fc22e403b
