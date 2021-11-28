@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/erizocosmico/csvquery/cmd/csvquery/internal/command"
+	"csvquery/cmd/csvquery/internal/command"
 
 	flags "github.com/jessevdk/go-flags"
 	"github.com/sirupsen/logrus"
