@@ -1,0 +1,117 @@
+# github.com/chzyer/readline v0.0.0-20160726135117-62c6fe619375
+## explicit
+github.com/chzyer/readline
+# github.com/davecgh/go-spew v1.1.1
+## explicit
+github.com/davecgh/go-spew/spew
+# github.com/erizocosmico/csvquery v1.2.0
+## explicit
+github.com/erizocosmico/csvquery
+# github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b
+## explicit
+github.com/golang/glog
+# github.com/golang/protobuf v1.2.0
+## explicit
+github.com/golang/protobuf/proto
+github.com/golang/protobuf/ptypes
+github.com/golang/protobuf/ptypes/any
+github.com/golang/protobuf/ptypes/duration
+github.com/golang/protobuf/ptypes/timestamp
+# github.com/jessevdk/go-flags v1.4.0
+## explicit
+github.com/jessevdk/go-flags
+# github.com/konsorten/go-windows-terminal-sequences v0.0.0-20180402223658-b729f2633dfe
+## explicit
+github.com/konsorten/go-windows-terminal-sequences
+# github.com/mattn/go-runewidth v0.0.2
+## explicit
+github.com/mattn/go-runewidth
+# github.com/mitchellh/hashstructure v1.0.0
+## explicit
+github.com/mitchellh/hashstructure
+# github.com/moovweb/rubex v0.0.2-0.20160224233712-cb849acea614
+## explicit
+github.com/moovweb/rubex
+# github.com/olekukonko/tablewriter v0.0.0-20180506121414-d4647c9c7a84
+## explicit
+github.com/olekukonko/tablewriter
+# github.com/opentracing/opentracing-go v1.0.2
+## explicit
+github.com/opentracing/opentracing-go
+github.com/opentracing/opentracing-go/log
+# github.com/pkg/errors v0.8.0
+## explicit
+github.com/pkg/errors
+# github.com/pmezard/go-difflib v1.0.0
+## explicit
+github.com/pmezard/go-difflib/difflib
+# github.com/sirupsen/logrus v1.1.0
+## explicit
+github.com/sirupsen/logrus
+# github.com/spf13/cast v1.2.0
+## explicit
+github.com/spf13/cast
+# github.com/stretchr/testify v1.2.2
+## explicit
+github.com/stretchr/testify/assert
+github.com/stretchr/testify/require
+# golang.org/x/crypto v0.0.0-20180904163835-0709b304e793
+## explicit
+golang.org/x/crypto/ssh/terminal
+# golang.org/x/net v0.0.0-20180926154720-4dfa2610cdf3
+## explicit
+golang.org/x/net/context
+# golang.org/x/sys v0.0.0-20180905080454-ebe1bf3edb33
+## explicit
+golang.org/x/sys/unix
+golang.org/x/sys/windows
+# google.golang.org/genproto v0.0.0-20180817151627-c66870c02cf8
+## explicit
+google.golang.org/genproto/googleapis/rpc/status
+# google.golang.org/grpc v1.15.0
+## explicit
+google.golang.org/grpc/codes
+google.golang.org/grpc/status
+# gopkg.in/src-d/go-errors.v1 v1.0.0
+## explicit
+gopkg.in/src-d/go-errors.v1
+# gopkg.in/src-d/go-mysql-server.v0 v0.0.0-20181012075230-8c2fc22e403b
+## explicit
+gopkg.in/src-d/go-mysql-server.v0
+gopkg.in/src-d/go-mysql-server.v0/internal/regex
+gopkg.in/src-d/go-mysql-server.v0/mem
+gopkg.in/src-d/go-mysql-server.v0/server
+gopkg.in/src-d/go-mysql-server.v0/sql
+gopkg.in/src-d/go-mysql-server.v0/sql/analyzer
+gopkg.in/src-d/go-mysql-server.v0/sql/expression
+gopkg.in/src-d/go-mysql-server.v0/sql/expression/function
+gopkg.in/src-d/go-mysql-server.v0/sql/expression/function/aggregation
+gopkg.in/src-d/go-mysql-server.v0/sql/parse
+gopkg.in/src-d/go-mysql-server.v0/sql/plan
+# gopkg.in/src-d/go-vitess.v0 v0.1.0
+## explicit
+# gopkg.in/src-d/go-vitess.v1 v1.2.0
+## explicit
+gopkg.in/src-d/go-vitess.v1/bucketpool
+gopkg.in/src-d/go-vitess.v1/bytes2
+gopkg.in/src-d/go-vitess.v1/cache
+gopkg.in/src-d/go-vitess.v1/event
+gopkg.in/src-d/go-vitess.v1/hack
+gopkg.in/src-d/go-vitess.v1/mysql
+gopkg.in/src-d/go-vitess.v1/netutil
+gopkg.in/src-d/go-vitess.v1/sqltypes
+gopkg.in/src-d/go-vitess.v1/stats
+gopkg.in/src-d/go-vitess.v1/sync2
+gopkg.in/src-d/go-vitess.v1/tb
+gopkg.in/src-d/go-vitess.v1/vt/log
+gopkg.in/src-d/go-vitess.v1/vt/logutil
+gopkg.in/src-d/go-vitess.v1/vt/proto/binlogdata
+gopkg.in/src-d/go-vitess.v1/vt/proto/logutil
+gopkg.in/src-d/go-vitess.v1/vt/proto/query
+gopkg.in/src-d/go-vitess.v1/vt/proto/replicationdata
+gopkg.in/src-d/go-vitess.v1/vt/proto/topodata
+gopkg.in/src-d/go-vitess.v1/vt/proto/vtgate
+gopkg.in/src-d/go-vitess.v1/vt/proto/vtrpc
+gopkg.in/src-d/go-vitess.v1/vt/sqlparser
+gopkg.in/src-d/go-vitess.v1/vt/vterrors
+gopkg.in/src-d/go-vitess.v1/vt/vttls
