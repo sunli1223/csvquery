@@ -2,12 +2,12 @@ package command
 
 import (
 	"fmt"
+	"github.com/dolthub/go-mysql-server/server"
+	"github.com/sirupsen/logrus"
 	"net"
 	"strconv"
-
-	"github.com/sirupsen/logrus"
-	"gopkg.in/src-d/go-mysql-server.v0/server"
-	"gopkg.in/src-d/go-vitess.v1/mysql"
+	//"gopkg.in/src-d/go-vitess.v1/mysql"
+	"github.com/dolthub/go-mysql-server/auth"
 )
 
 // Server starts a new MySQL server with the CSV files as a backend.
@@ -25,12 +25,7 @@ func (c *Server) Execute([]string) error {
 	if err != nil {
 		return err
 	}
-
-	auth := mysql.NewAuthServerStatic()
-	auth.Entries[c.User] = []*mysql.AuthServerStaticEntry{
-		{Password: c.Password},
-	}
-
+	auth := auth.NewNativeSingle(c.User, c.Password, auth.AllPermissions)
 	addr := net.JoinHostPort(c.Host, strconv.Itoa(c.Port))
 	s, err := server.NewServer(
 		server.Config{

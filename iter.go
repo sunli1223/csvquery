@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io"
 
-	"gopkg.in/src-d/go-mysql-server.v0/sql"
+	"github.com/dolthub/go-mysql-server/sql"
 )
 
 type csvRowIter struct {
@@ -18,7 +18,7 @@ type csvRowIter struct {
 func (i *csvRowIter) Next() (sql.Row, error) {
 	record, err := i.r.Read()
 	if err != nil {
-		_ = i.Close()
+		_ = i.Close(nil)
 		if err == io.EOF {
 			return nil, err
 		}
@@ -34,7 +34,7 @@ func (i *csvRowIter) Next() (sql.Row, error) {
 	return row, nil
 }
 
-func (i *csvRowIter) Close() error {
+func (i *csvRowIter) Close(*sql.Context) error {
 	if i.closed {
 		return nil
 	}

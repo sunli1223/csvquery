@@ -2,23 +2,43 @@ package csvquery
 
 import (
 	"fmt"
-
-	"gopkg.in/src-d/go-mysql-server.v0/sql"
+	"github.com/dolthub/go-mysql-server/sql"
+	"strings"
 )
 
 // Database that contains all CSV files as tables. Adding and reading tables
 // from the database is not thread-safe. Adding tables should happen before
 // they are going to be read.
 type Database struct {
-	name   string
-	tables map[string]sql.Table
+	name          string
+	tables        map[string]sql.Table
+	tablesInLower map[string]sql.Table
+}
+
+func (d *Database) GetTableInsensitive(ctx *sql.Context, tblName string) (sql.Table, bool, error) {
+	if _, ok := d.tables[tblName]; ok {
+		return d.tables[tblName], true, nil
+	}
+	if _, ok := d.tablesInLower[tblName]; ok {
+		return d.tablesInLower[tblName], true, nil
+	}
+	return nil, false, nil
+}
+
+func (d *Database) GetTableNames(ctx *sql.Context) ([]string, error) {
+	tbNames := make([]string, 0, len(d.tables))
+	for k := range d.tables {
+		tbNames = append(tbNames, k)
+	}
+	return tbNames, nil
 }
 
 // NewDatabase creates a new database with the given name.
 func NewDatabase(name string) *Database {
 	return &Database{
-		name:   name,
-		tables: make(map[string]sql.Table),
+		name:          name,
+		tables:        make(map[string]sql.Table),
+		tablesInLower: make(map[string]sql.Table),
 	}
 }
 
@@ -44,10 +64,11 @@ func (d *Database) AddTable(name, path string) error {
 	}
 
 	d.tables[name] = t
-
+	d.tablesInLower[strings.ToLower(name)] = t
 	return nil
 }
 func (d *Database) DropTable(name string) error {
-	delete(d.tables, "name")
+	delete(d.tables, name)
+	delete(d.tablesInLower, strings.ToLower(name))
 	return nil
 }

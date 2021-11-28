@@ -1,9 +1,10 @@
 package command
 
 import (
-	"fmt"
-	"github.com/erizocosmico/csvquery"
-	sqle "gopkg.in/src-d/go-mysql-server.v0"
+	"csvquery"
+	sqle "github.com/dolthub/go-mysql-server"
+	"github.com/dolthub/go-mysql-server/sql"
+	"github.com/dolthub/go-mysql-server/sql/information_schema"
 	"os"
 	"path"
 	"path/filepath"
@@ -41,12 +42,7 @@ func (b baseCmd) engine() (*sqle.Engine, *csvquery.Database, error) {
 		}
 	}
 
-	engine := sqle.NewDefault()
-	engine.AddDatabase(db)
-
-	if err := engine.Init(); err != nil {
-		return nil, nil, fmt.Errorf("csvquery: unable to initialize engine: %s", err)
-	}
+	engine := sqle.NewDefault(sql.NewDatabaseProvider(db, information_schema.NewInformationSchemaDatabase()))
 
 	return engine, db, nil
 }

@@ -3,11 +3,11 @@ package csvquery
 import (
 	"encoding/csv"
 	"fmt"
+	"github.com/dolthub/go-mysql-server/sql"
+	"github.com/sirupsen/logrus"
 	"io"
 	"os"
 	"sync"
-
-	"gopkg.in/src-d/go-mysql-server.v0/sql"
 )
 
 // Table is a SQL table that will read CSV rows as SQL rows.
@@ -18,7 +18,7 @@ type Table struct {
 	mu     *sync.RWMutex
 }
 
-var _ sql.Inserter = (*Table)(nil)
+//var _ sql.Inserter = (*Table)(nil)
 
 // NewTable creates a new table given a name and filename.
 func NewTable(name, file string) (*Table, error) {
@@ -31,8 +31,10 @@ func NewTable(name, file string) (*Table, error) {
 
 	csvr := csv.NewReader(f)
 	header, err := csvr.Read()
+	logrus.Infof("%s", header)
 	if err != nil {
-		return nil, fmt.Errorf("csvquery: unable to read header of table %s: %s", name, err)
+		logrus.Errorf("csvquery: unable to read header of table %s: %s", name, err)
+		return nil, err
 	}
 
 	t := &Table{name: name, file: file, mu: new(sync.RWMutex)}
@@ -43,7 +45,7 @@ func NewTable(name, file string) (*Table, error) {
 			Nullable: false,
 			Source:   name,
 			Name:     col,
-			Default:  "",
+			//	Default:  *sql.ColumnDefaultValue{nil},
 		}
 	}
 
@@ -152,15 +154,15 @@ type partitionIter struct {
 	done bool
 }
 
+func (p *partitionIter) Close(context *sql.Context) error {
+	p.done = true
+	return nil
+}
+
 func (p *partitionIter) Next() (sql.Partition, error) {
 	if p.done {
 		return nil, io.EOF
 	}
 	p.done = true
 	return partition(p.f), nil
-}
-
-func (p *partitionIter) Close() error {
-	p.done = true
-	return nil
 }
