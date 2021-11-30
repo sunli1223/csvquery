@@ -4,10 +4,9 @@ import (
 	"bytes"
 	"csvquery/cmd/csvquery/internal/command"
 	"fmt"
-	"os"
-
 	flags "github.com/jessevdk/go-flags"
 	"github.com/sirupsen/logrus"
+	"os"
 )
 
 var (
@@ -32,8 +31,8 @@ func (m *LogFormatter) Format(entry *logrus.Entry) ([]byte, error) {
 	//HasCaller()为true才会有调用信息
 	if entry.HasCaller() {
 		fName := entry.Caller.File
-		newLog = fmt.Sprintf("[%s] [%s] [%s:%d %s] %s\n",
-			timestamp, entry.Level, fName, entry.Caller.Line, entry.Caller.Function, entry.Message)
+		newLog = fmt.Sprintf("[%s] [%s] [%s:%d] %s\n",
+			timestamp, entry.Level, fName, entry.Caller.Line, entry.Message)
 	} else {
 		newLog = fmt.Sprintf("[%s] [%s] %s\n", timestamp, entry.Level, entry.Message)
 	}
@@ -44,7 +43,7 @@ func (m *LogFormatter) Format(entry *logrus.Entry) ([]byte, error) {
 
 func main() {
 	logrus.SetReportCaller(true)
-	logrus.SetLevel(logrus.DebugLevel)
+	logrus.SetLevel(logrus.TraceLevel)
 	logrus.SetFormatter(&LogFormatter{})
 	parser := flags.NewNamedParser("csvquery", flags.Default)
 

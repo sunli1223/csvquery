@@ -30,7 +30,9 @@ require (
 	github.com/olekukonko/tablewriter v0.0.0-20180506121414-d4647c9c7a84 // indirect
 	github.com/oliveagle/jsonpath v0.0.0-20180606110733-2e52cf6e6852 // indirect
 	github.com/opentracing/opentracing-go v1.1.0 // indirect
+	github.com/pelletier/go-toml v1.2.0 // indirect
 	github.com/pkg/errors v0.8.1 // indirect
+	github.com/pkg/profile v1.6.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/shopspring/decimal v0.0.0-20191130220710-360f2bc03045 // indirect
 	github.com/spf13/cast v1.2.0 // indirect

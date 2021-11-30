@@ -1,0 +1,13 @@
+[Unit]
+Description=Mysql csv server
+Wants=network-online.target
+After=network.target
+[Service]
+Type=simple
+Restart=on-failure
+User=mysql
+RestartSec=5s
+ExecStart=/usr/bin/csvquery server --dbname csv -f /home/q/csvdata/data/Hang.Lu/files/csv   -u root -p CnKq2q>=gP
+LimitNOFILE=1048576
+[Install]
+WantedBy=multi-user.target

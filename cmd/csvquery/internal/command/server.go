@@ -21,10 +21,12 @@ type Server struct {
 
 // Execute the command.
 func (c *Server) Execute([]string) error {
-	engine, _, err := c.engine()
+	engine, db, err := c.engine()
 	if err != nil {
 		return err
 	}
+	StartFileWatchTask(db)
+
 	auth := auth.NewNativeSingle(c.User, c.Password, auth.AllPermissions)
 	addr := net.JoinHostPort(c.Host, strconv.Itoa(c.Port))
 	s, err := server.NewServer(
@@ -39,7 +41,6 @@ func (c *Server) Execute([]string) error {
 	if err != nil {
 		return fmt.Errorf("csvquery: unable to create server: %s", err)
 	}
-
 	logrus.Infof("server started and listening on %s:%d", c.Host, c.Port)
 	return s.Start()
 }

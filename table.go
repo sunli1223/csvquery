@@ -79,7 +79,7 @@ func (t Table) PartitionRows(ctx *sql.Context, p sql.Partition) (sql.RowIter, er
 	if err != nil {
 		return nil, fmt.Errorf("csvquery: error reading header of table %q: %s", t.name, err)
 	}
-
+	//r.ReuseRecord=true
 	return &csvRowIter{closer: f, unlock: t.mu.RUnlock, r: r}, nil
 }
 

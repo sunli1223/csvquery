@@ -17,10 +17,10 @@ var (
 	fileLitsMap     = make(map[string]string)
 	dirList         []string
 	db              *csvquery.Database
-	durationSeconds = 3
+	durationSeconds = 30
 )
 
-func run(database *csvquery.Database) {
+func StartFileWatchTask(database *csvquery.Database) {
 	db = database
 	c := cron.New()
 	c.AddFunc("@every "+strconv.Itoa(durationSeconds)+"s", func() {
