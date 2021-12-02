@@ -5,6 +5,7 @@ import (
 	"csvquery/cmd/csvquery/internal/command"
 	"fmt"
 	flags "github.com/jessevdk/go-flags"
+	"github.com/keepeye/logrus-filename"
 	"github.com/sirupsen/logrus"
 	"os"
 )
@@ -30,9 +31,11 @@ func (m *LogFormatter) Format(entry *logrus.Entry) ([]byte, error) {
 
 	//HasCaller()为true才会有调用信息
 	if entry.HasCaller() {
-		fName := entry.Caller.File
-		newLog = fmt.Sprintf("[%s] [%s] [%s:%d] %s\n",
-			timestamp, entry.Level, fName, entry.Caller.Line, entry.Message)
+		if v, ok := entry.Data["query"]; ok && logrus.GetLevel() < logrus.InfoLevel {
+			newLog = fmt.Sprintf("[%s] [%s] [%s] %s %s\n", timestamp, entry.Level, entry.Data["line"], v)
+		} else {
+			newLog = fmt.Sprintf("[%s] [%s] [%s] %s\n", timestamp, entry.Level, entry.Data["line"], entry.Message)
+		}
 	} else {
 		newLog = fmt.Sprintf("[%s] [%s] %s\n", timestamp, entry.Level, entry.Message)
 	}
@@ -42,8 +45,11 @@ func (m *LogFormatter) Format(entry *logrus.Entry) ([]byte, error) {
 }
 
 func main() {
+	filenameHook := filename.NewHook()
+	filenameHook.Field = "line"
 	logrus.SetReportCaller(true)
-	logrus.SetLevel(logrus.TraceLevel)
+	logrus.SetLevel(logrus.InfoLevel)
+	logrus.AddHook(filenameHook)
 	logrus.SetFormatter(&LogFormatter{})
 	parser := flags.NewNamedParser("csvquery", flags.Default)
 

@@ -78,6 +78,9 @@ github.com/hashicorp/golang-lru/simplelru
 # github.com/jessevdk/go-flags v1.4.0
 ## explicit
 github.com/jessevdk/go-flags
+# github.com/keepeye/logrus-filename v0.0.0-20190711075016-ce01a4391dd1
+## explicit
+github.com/keepeye/logrus-filename
 # github.com/konsorten/go-windows-terminal-sequences v1.0.2
 ## explicit
 github.com/konsorten/go-windows-terminal-sequences
@@ -91,7 +94,6 @@ github.com/lestrrat-go/strftime
 github.com/mitchellh/hashstructure
 # github.com/moovweb/rubex v0.0.2-0.20160224233712-cb849acea614
 ## explicit
-github.com/moovweb/rubex
 # github.com/olekukonko/tablewriter v0.0.0-20180506121414-d4647c9c7a84
 ## explicit
 # github.com/oliveagle/jsonpath v0.0.0-20180606110733-2e52cf6e6852
@@ -120,9 +122,8 @@ github.com/shopspring/decimal
 # github.com/sirupsen/logrus v1.4.2
 ## explicit
 github.com/sirupsen/logrus
-# github.com/spf13/cast v1.2.0
+# github.com/spf13/cast v1.3.0
 ## explicit
-github.com/spf13/cast
 # github.com/src-d/go-oniguruma v1.1.0
 ## explicit
 github.com/src-d/go-oniguruma
@@ -155,26 +156,12 @@ google.golang.org/grpc/status
 # gopkg.in/src-d/go-errors.v1 v1.0.0
 ## explicit
 gopkg.in/src-d/go-errors.v1
-# gopkg.in/src-d/go-mysql-server.v0 v0.0.0-20181012075230-8c2fc22e403b
+# gopkg.in/src-d/go-mysql-server.v0 v0.5.1
 ## explicit
-gopkg.in/src-d/go-mysql-server.v0/internal/regex
-gopkg.in/src-d/go-mysql-server.v0/sql
-gopkg.in/src-d/go-mysql-server.v0/sql/expression
-gopkg.in/src-d/go-mysql-server.v0/sql/plan
 # gopkg.in/src-d/go-vitess.v0 v0.1.0
 ## explicit
-# gopkg.in/src-d/go-vitess.v1 v1.2.0
+# gopkg.in/src-d/go-vitess.v1 v1.4.0
 ## explicit
-gopkg.in/src-d/go-vitess.v1/bytes2
-gopkg.in/src-d/go-vitess.v1/hack
-gopkg.in/src-d/go-vitess.v1/sqltypes
-gopkg.in/src-d/go-vitess.v1/vt/log
-gopkg.in/src-d/go-vitess.v1/vt/proto/query
-gopkg.in/src-d/go-vitess.v1/vt/proto/topodata
-gopkg.in/src-d/go-vitess.v1/vt/proto/vtgate
-gopkg.in/src-d/go-vitess.v1/vt/proto/vtrpc
-gopkg.in/src-d/go-vitess.v1/vt/sqlparser
-gopkg.in/src-d/go-vitess.v1/vt/vterrors
 # gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c
 ## explicit
 gopkg.in/yaml.v3

@@ -5,10 +5,10 @@ go 1.17
 require (
 	github.com/dolthub/go-mysql-server v0.11.0
 	github.com/jessevdk/go-flags v1.4.0
+	github.com/keepeye/logrus-filename v0.0.0-20190711075016-ce01a4391dd1
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/sirupsen/logrus v1.4.2
 	github.com/stretchr/testify v1.7.0
-	gopkg.in/src-d/go-mysql-server.v0 v0.0.0-20181012075230-8c2fc22e403b
 )
 
 require (
@@ -35,7 +35,7 @@ require (
 	github.com/pkg/profile v1.6.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/shopspring/decimal v0.0.0-20191130220710-360f2bc03045 // indirect
-	github.com/spf13/cast v1.2.0 // indirect
+	github.com/spf13/cast v1.3.0 // indirect
 	github.com/src-d/go-oniguruma v1.1.0 // indirect
 	golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9 // indirect
 	golang.org/x/net v0.0.0-20201021035429-f5854403a974 // indirect
@@ -44,7 +44,8 @@ require (
 	google.golang.org/genproto v0.0.0-20190926190326-7ee9db18f195 // indirect
 	google.golang.org/grpc v1.27.0 // indirect
 	gopkg.in/src-d/go-errors.v1 v1.0.0 // indirect
+	gopkg.in/src-d/go-mysql-server.v0 v0.5.1 // indirect
 	gopkg.in/src-d/go-vitess.v0 v0.1.0 // indirect
-	gopkg.in/src-d/go-vitess.v1 v1.2.0 // indirect
+	gopkg.in/src-d/go-vitess.v1 v1.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c // indirect
 )

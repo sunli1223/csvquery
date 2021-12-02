@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/dolthub/go-mysql-server/sql"
 	"github.com/stretchr/testify/require"
-	"gopkg.in/src-d/go-mysql-server.v0/sql"
 )
 
 const testCsv = `1,Jake Peralta
@@ -23,7 +23,7 @@ func TestCsvIter(t *testing.T) {
 	var unlocked bool
 	iter := &csvRowIter{unlock: fakeUnlock(&unlocked), closer: closer, r: r}
 
-	rows, err := sql.RowIterToRows(iter)
+	rows, err := sql.RowIterToRows(nil, iter)
 	require.NoError(err)
 
 	expected := []sql.Row{
